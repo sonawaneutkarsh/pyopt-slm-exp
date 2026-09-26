@@ -1,6 +1,7 @@
 # PyOpt v1.1 starter
 
-This is a small, controlled dataset for your first Qwen 4B + LoRA experiment.
+This project is a small python function optimizer using SLMs that I was messing with .
+It consists of a small, controlled dataset for my Qwen 4B + LoRA experiment.
 
 ## What it contains
 - 160 training examples
@@ -26,7 +27,7 @@ Outputs appear in `data/`.
 
 ## Important
 This is PyOpt v1: a pipeline-validation dataset, not a serious benchmark yet.
-The examples are intentionally controlled so you can prove that:
+The examples are intentionally controlled so I can prove that:
 1. the dataset loads,
 2. Qwen 4B can be fine-tuned,
 3. the adapter saves,
