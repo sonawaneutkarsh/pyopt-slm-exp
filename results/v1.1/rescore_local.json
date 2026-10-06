@@ -1,0 +1,888 @@
+{
+ "test": "data/v1.1/pyopt_test.jsonl",
+ "leaked_ids": [
+  "list_concat-000",
+  "list_concat-019",
+  "membership-003",
+  "no_change-011",
+  "no_change-023",
+  "repeated_sort-037",
+  "repeated_sum-031",
+  "repeated_sum-034",
+  "string_concat-014",
+  "string_concat-023",
+  "string_concat-033",
+  "string_concat-036",
+  "string_concat-037"
+ ],
+ "models": {
+  "base_outputs": {
+   "all": {
+    "n": 40,
+    "valid": 40,
+    "correct": 40,
+    "exact": 7,
+    "no_change_n": 5,
+    "no_change_kept": 0,
+    "faster": 28,
+    "median_speedup": 2.42
+   },
+   "rows": [
+    {
+     "id": "no_change-003",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.9165077778163478,
+     "error": null
+    },
+    {
+     "id": "no_change-028",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.8871351373363172,
+     "error": null
+    },
+    {
+     "id": "list_concat-003",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.820235052384825,
+     "error": null
+    },
+    {
+     "id": "string_concat-021",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.5294471142051458,
+     "error": null
+    },
+    {
+     "id": "list_concat-019",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.6751218326284003,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-022",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.22708461661355,
+     "error": null
+    },
+    {
+     "id": "membership-026",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.8966364572343388,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-024",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 35.30465901929625,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-013",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 33.90412587171125,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-031",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 28.08493051118173,
+     "error": null
+    },
+    {
+     "id": "membership-008",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.8965304568558089,
+     "error": null
+    },
+    {
+     "id": "string_concat-037",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 0.7757028934172686,
+     "error": null
+    },
+    {
+     "id": "list_concat-000",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 6.4720133987585635,
+     "error": null
+    },
+    {
+     "id": "list_concat-034",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 9.427190156636687,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-034",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 27.688729205465478,
+     "error": null
+    },
+    {
+     "id": "list_concat-015",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 6.757309710087017,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-025",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 2.136158915763644,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-007",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 2.6990704272458825,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-008",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 49.32330617539755,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-004",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 2.933980746639192,
+     "error": null
+    },
+    {
+     "id": "list_concat-016",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 5.130954951904993,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-029",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 47.00114187377045,
+     "error": null
+    },
+    {
+     "id": "membership-025",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 1.0058507749568957,
+     "error": null
+    },
+    {
+     "id": "no_change-023",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.872259676599981,
+     "error": null
+    },
+    {
+     "id": "no_change-009",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.8029235830227673,
+     "error": null
+    },
+    {
+     "id": "list_concat-025",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 6.767548281189746,
+     "error": null
+    },
+    {
+     "id": "membership-013",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.8635528155781287,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-037",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.744298089605398,
+     "error": null
+    },
+    {
+     "id": "string_concat-023",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.3090523885052323,
+     "error": null
+    },
+    {
+     "id": "membership-003",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.9446836772726818,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-000",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 31.4936126668082,
+     "error": null
+    },
+    {
+     "id": "string_concat-015",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.291953498023887,
+     "error": null
+    },
+    {
+     "id": "string_concat-014",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.1446130459730406,
+     "error": null
+    },
+    {
+     "id": "membership-019",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.9541844937778033,
+     "error": null
+    },
+    {
+     "id": "string_concat-036",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.4878285464719403,
+     "error": null
+    },
+    {
+     "id": "string_concat-033",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.4745396306254945,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-031",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.328479534060276,
+     "error": null
+    },
+    {
+     "id": "no_change-011",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 0.9266733357185132,
+     "error": null
+    },
+    {
+     "id": "membership-021",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 1.102569968796338,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-038",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 2.7132874952536823,
+     "error": null
+    }
+   ],
+   "clean": {
+    "n": 27,
+    "valid": 27,
+    "correct": 27,
+    "exact": 2,
+    "no_change_n": 3,
+    "no_change_kept": 0,
+    "faster": 19,
+    "median_speedup": 2.71
+   },
+   "leaked": {
+    "n": 13,
+    "valid": 13,
+    "correct": 13,
+    "exact": 5,
+    "no_change_n": 2,
+    "no_change_kept": 0,
+    "faster": 9,
+    "median_speedup": 1.47
+   }
+  },
+  "finetuned_outputs": {
+   "all": {
+    "n": 40,
+    "valid": 40,
+    "correct": 40,
+    "exact": 31,
+    "no_change_n": 5,
+    "no_change_kept": 5,
+    "faster": 38,
+    "median_speedup": 4.69
+   },
+   "rows": [
+    {
+     "id": "no_change-003",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": true,
+     "speedup": 1.0709676337470768,
+     "error": null
+    },
+    {
+     "id": "no_change-028",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": true,
+     "speedup": 1.3566679802561896,
+     "error": null
+    },
+    {
+     "id": "list_concat-003",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 5.287319895231158,
+     "error": null
+    },
+    {
+     "id": "string_concat-021",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.1047287889384179,
+     "error": null
+    },
+    {
+     "id": "list_concat-019",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 6.370829571811827,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-022",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 3.7077157831417282,
+     "error": null
+    },
+    {
+     "id": "membership-026",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 11.324027715389049,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-024",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 30.040707992107592,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-013",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 28.17159509854578,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-031",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 24.865655603619548,
+     "error": null
+    },
+    {
+     "id": "membership-008",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 12.942428220804326,
+     "error": null
+    },
+    {
+     "id": "string_concat-037",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.1257226446865305,
+     "error": null
+    },
+    {
+     "id": "list_concat-000",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 5.007695988973328,
+     "error": null
+    },
+    {
+     "id": "list_concat-034",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 6.093222758743166,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-034",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 28.692451194405976,
+     "error": null
+    },
+    {
+     "id": "list_concat-015",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 4.105045799796272,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-025",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 4.3928986274414195,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-007",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 3.5191707895536966,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-008",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 30.4670763862461,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-004",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 2.899960267316492,
+     "error": null
+    },
+    {
+     "id": "list_concat-016",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 4.983152394767347,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-029",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 30.13686744026564,
+     "error": null
+    },
+    {
+     "id": "membership-025",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 11.696649229948747,
+     "error": null
+    },
+    {
+     "id": "no_change-023",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": true,
+     "speedup": 1.2449874778823127,
+     "error": null
+    },
+    {
+     "id": "no_change-009",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": true,
+     "speedup": 0.9705616727601635,
+     "error": null
+    },
+    {
+     "id": "list_concat-025",
+     "category": "list_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 3.3928010308174,
+     "error": null
+    },
+    {
+     "id": "membership-013",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 9.09600724244092,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-037",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 5.806513456090202,
+     "error": null
+    },
+    {
+     "id": "string_concat-023",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.124156535363871,
+     "error": null
+    },
+    {
+     "id": "membership-003",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 15.2946472442192,
+     "error": null
+    },
+    {
+     "id": "repeated_sum-000",
+     "category": "repeated_sum",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 24.77509874933014,
+     "error": null
+    },
+    {
+     "id": "string_concat-015",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.9072055489482818,
+     "error": null
+    },
+    {
+     "id": "string_concat-014",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 0.8034756584748683,
+     "error": null
+    },
+    {
+     "id": "membership-019",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 9.627512749848538,
+     "error": null
+    },
+    {
+     "id": "string_concat-036",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.1506671009740135,
+     "error": null
+    },
+    {
+     "id": "string_concat-033",
+     "category": "string_concat",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 1.3071508500609048,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-031",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": false,
+     "unchanged": false,
+     "speedup": 2.185513665569663,
+     "error": null
+    },
+    {
+     "id": "no_change-011",
+     "category": "no_change",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": true,
+     "speedup": 1.1797194667565085,
+     "error": null
+    },
+    {
+     "id": "membership-021",
+     "category": "membership",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 15.11360244367949,
+     "error": null
+    },
+    {
+     "id": "repeated_sort-038",
+     "category": "repeated_sort",
+     "valid": true,
+     "correct": true,
+     "exact": true,
+     "unchanged": false,
+     "speedup": 4.0396666225988405,
+     "error": null
+    }
+   ],
+   "clean": {
+    "n": 27,
+    "valid": 27,
+    "correct": 27,
+    "exact": 20,
+    "no_change_n": 3,
+    "no_change_kept": 3,
+    "faster": 26,
+    "median_speedup": 4.98
+   },
+   "leaked": {
+    "n": 13,
+    "valid": 13,
+    "correct": 13,
+    "exact": 11,
+    "no_change_n": 2,
+    "no_change_kept": 2,
+    "faster": 12,
+    "median_speedup": 1.31
+   }
+  }
+ }
+}

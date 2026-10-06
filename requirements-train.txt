@@ -1,0 +1,14 @@
+# Environment of the recorded fine-tuning run (Kaggle, Python 3.12.13, 2x Tesla T4, CUDA 12.8).
+# Versions printed by the notebook:
+unsloth==2026.9.11
+transformers==5.5.0
+torch==2.10.0
+triton==3.6.0
+xformers==0.0.35
+# Not printed by the notebook. Ranges are the ones unsloth 2026.9.11 declares on PyPI;
+# the exact versions resolved on Kaggle were not recorded.
+trl>=0.18.2,<=0.24.0
+datasets>=3.4.1,<4.4.0
+peft>=0.18.0
+bitsandbytes>=0.45.5
+accelerate>=0.34.1
