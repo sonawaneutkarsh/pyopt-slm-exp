@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    name: dataset and scorer (CPU only)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: requirements.txt
+      - run: python -m pip install -r requirements.txt
+      - name: Tests (rebuild is byte-identical, no leakage in v1.2, published v1.1 scores)
+        run: pytest
+      - name: Re-score the published outputs
+        run: >
+          python evaluate.py --test data/v1.1/pyopt_test.jsonl --train data/v1.1/pyopt_train.jsonl
+          results/v1.1/base_outputs.jsonl results/v1.1/finetuned_outputs.jsonl

@@ -1,0 +1,3 @@
+# build_pyopt_dataset.py and evaluate.py use only the Python standard library (3.10+).
+# Tests:
+pytest==9.1.1
