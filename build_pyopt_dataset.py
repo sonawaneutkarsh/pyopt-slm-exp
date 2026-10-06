@@ -1,11 +1,36 @@
+"""Build the PyOpt dataset: verified Python optimization pairs in six families.
 
-import random, json, copy
-from pathlib import Path
+Every reference optimization is executed against the original on edge cases
+before anything is written. Generation is seeded, so a rebuild is byte-identical.
+
+Splits:
+  v1.2 (default) - group-aware split. Examples whose ``original`` code is identical
+                   once the function name is ignored stay in the same split, so no
+                   test prompt is a renamed copy of a training prompt.
+  v1.1           - the original per-category random split, used for the published
+                   fine-tuning run. 13 of its 40 test prompts are renamed copies of
+                   training prompts. Kept only to reproduce data/v1.1/.
+
+Usage:
+  python build_pyopt_dataset.py                       # v1.2 -> data/
+  python build_pyopt_dataset.py --split v1.1 --out data/v1.1
+"""
+
+import argparse
+import copy
+import json
+import random
+import re
 from collections import Counter
+from pathlib import Path
 
 SEED = 3407
-OUT_DIR = Path("data")
-OUT_DIR.mkdir(exist_ok=True)
+REPO_DIR = Path(__file__).resolve().parent
+DEFAULT_OUT_DIR = REPO_DIR / "data"
+
+# Per-category split sizes: (train, val, test).
+SPLIT_SIZES = {"no_change": (20, 5, 5)}
+DEFAULT_SPLIT_SIZES = (28, 5, 7)
 
 NAME_POOLS = {
     "item": ["item", "x", "value", "entry", "number"],
@@ -173,6 +198,7 @@ def cases_for(category):
 
 
 def run_function(code, fn_name, args):
+    # exec() only ever runs code produced by make_code() in this file.
     namespace = {}
     exec(code, namespace)
     return namespace[fn_name](*copy.deepcopy(args))
@@ -300,7 +326,17 @@ def generate_examples():
     return examples
 
 
+def normalized_original(example):
+    """The original code with the function name removed (``def f(``).
+
+    Two examples with the same normalized original present the model with the
+    same prompt apart from the function name.
+    """
+    return re.sub(r"def \w+\(", "def f(", example["original"], count=1)
+
+
 def stratified_split(examples):
+    """v1.1 split (published run): per-category shuffle, no duplicate check."""
     by_cat = {}
     for ex in examples:
         by_cat.setdefault(ex["category"], []).append(ex)
@@ -325,22 +361,98 @@ def stratified_split(examples):
     return train, val, test
 
 
+def _take_groups(groups, target):
+    """Remove whole groups from ``groups`` until exactly ``target`` rows are taken."""
+    taken = []
+    for group in list(groups):
+        if len(taken) == target:
+            break
+        if len(taken) + len(group) <= target:
+            taken.extend(group)
+            groups.remove(group)
+    if len(taken) != target:
+        raise RuntimeError(f"could not fill a split of {target} with whole groups")
+    return taken
+
+
+def group_split(examples):
+    """v1.2 split: same per-category sizes, but duplicate groups never cross splits."""
+    by_cat = {}
+    for ex in examples:
+        by_cat.setdefault(ex["category"], []).append(ex)
+
+    train, val, test = [], [], []
+    rng = random.Random(SEED)
+
+    for category, rows in by_cat.items():
+        groups = {}
+        for ex in rows:
+            groups.setdefault(normalized_original(ex), []).append(ex)
+        ordered = list(groups.values())
+        rng.shuffle(ordered)
+
+        _, n_val, n_test = SPLIT_SIZES.get(category, DEFAULT_SPLIT_SIZES)
+        test.extend(_take_groups(ordered, n_test))
+        val.extend(_take_groups(ordered, n_val))
+        for group in ordered:
+            train.extend(group)
+
+    rng.shuffle(train)
+    rng.shuffle(val)
+    rng.shuffle(test)
+    return train, val, test
+
+
+def cross_split_duplicates(train, val, test):
+    """Count prompts in a later split whose normalized original is in an earlier one."""
+    train_keys = {normalized_original(x) for x in train}
+    val_keys = {normalized_original(x) for x in val}
+    return {
+        "test_in_train": sum(normalized_original(x) in train_keys for x in test),
+        "val_in_train": sum(normalized_original(x) in train_keys for x in val),
+        "test_in_val": sum(normalized_original(x) in val_keys for x in test),
+    }
+
+
 def write_jsonl(path, rows):
     with path.open("w", encoding="utf-8") as f:
         for row in rows:
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 
-if __name__ == "__main__":
+def build(split="v1.2", out_dir=DEFAULT_OUT_DIR):
     examples = generate_examples()
-    train, val, test = stratified_split(examples)
+    if split == "v1.1":
+        train, val, test = stratified_split(examples)
+    elif split == "v1.2":
+        train, val, test = group_split(examples)
+    else:
+        raise ValueError(f"unknown split {split!r}")
 
-    write_jsonl(OUT_DIR / "pyopt_train.jsonl", train)
-    write_jsonl(OUT_DIR / "pyopt_val.jsonl", val)
-    write_jsonl(OUT_DIR / "pyopt_test.jsonl", test)
+    out_dir = Path(out_dir)
+    out_dir.mkdir(parents=True, exist_ok=True)
+    write_jsonl(out_dir / "pyopt_train.jsonl", train)
+    write_jsonl(out_dir / "pyopt_val.jsonl", val)
+    write_jsonl(out_dir / "pyopt_test.jsonl", test)
+    return train, val, test
 
-    print("Dataset built and reference pairs verified.")
+
+def main(argv=None):
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--split", choices=["v1.2", "v1.1"], default="v1.2")
+    parser.add_argument("--out", default=None, help="output directory (default: data/)")
+    args = parser.parse_args(argv)
+
+    out_dir = Path(args.out) if args.out else DEFAULT_OUT_DIR
+    train, val, test = build(args.split, out_dir)
+
+    print(f"Dataset built ({args.split} split) and reference pairs verified -> {out_dir}")
     print(f"train={len(train)}, val={len(val)}, test={len(test)}")
     print("train categories:", Counter(x["category"] for x in train))
     print("val categories:", Counter(x["category"] for x in val))
     print("test categories:", Counter(x["category"] for x in test))
+    print("cross-split duplicates:", cross_split_duplicates(train, val, test))
+
+
+if __name__ == "__main__":
+    main()
