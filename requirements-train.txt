@@ -2,7 +2,7 @@
 # Versions printed by the notebook:
 unsloth==2026.9.11
 transformers==5.5.0
-torch==2.10.0
+torch==2.13.0
 triton==3.6.0
 xformers==0.0.35
 # Not printed by the notebook. Ranges are the ones unsloth 2026.9.11 declares on PyPI;
